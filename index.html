@@ -19,10 +19,10 @@
 </head>
 
 <body style="margin: 0px; overflow: hidden;">
-    <div id="cache-indicator">V3 - NFT ACTIVE</div>
+    <div id="cache-indicator">V4 - ABSOLUTE PATHS</div>
 
     <div class="arjs-loader">
-        <div>Loading AR Descriptors...</div>
+        <div>Loading SYDE AR Assets...<br>Please wait.</div>
     </div>
 
     <a-scene 
@@ -37,15 +37,24 @@
             <img id="image-3" src="Sound.png" crossorigin="anonymous">
         </a-assets>
 
-        <a-nft type="nft" url="markers/SYDE" smooth="true" smoothCount="10">
+        <a-nft 
+            type="nft" 
+            url="https://jagrnght.github.io/SYDEgallery/markers/SYDE" 
+            smooth="true" smoothCount="10">
             <a-image src="#image-1" position="50 0 -50" rotation="-90 0 0" width="100" height="75"></a-image>
         </a-nft>
 
-        <a-nft type="nft" url="markers/fountain" smooth="true" smoothCount="10">
+        <a-nft 
+            type="nft" 
+            url="https://jagrnght.github.io/SYDEgallery/markers/fountain" 
+            smooth="true" smoothCount="10">
             <a-image src="#image-2" position="50 0 -50" rotation="-90 0 0" width="100" height="75"></a-image>
         </a-nft>
 
-        <a-nft type="nft" url="markers/piano" smooth="true" smoothCount="10">
+        <a-nft 
+            type="nft" 
+            url="https://jagrnght.github.io/SYDEgallery/markers/piano" 
+            smooth="true" smoothCount="10">
             <a-image src="#image-3" position="50 0 -50" rotation="-90 0 0" width="100" height="75"></a-image>
         </a-nft>
 
@@ -53,9 +62,7 @@
     </a-scene>
 
     <script>
-        // This hides the loading screen once the NFT markers are initialized
         window.addEventListener('arjs-nft-loaded', () => {
-            console.log("NFT Loaded");
             const loader = document.querySelector('.arjs-loader');
             if (loader) loader.style.display = 'none';
         });
