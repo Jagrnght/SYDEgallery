@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+  
+<a-assets>
+  <img id="image-1" src="Ventech.png" crossorigin="anonymous">
+  <img id="image-2" src="S1000.png" crossorigin="anonymous">
+  <img id="image-3" src="Sound.png" crossorigin="anonymous">
+</a-assets>
+
+  <a-marker type="pattern" url="pattern-SYDEtrainer.patt">
+    <a-image src="#image-1" position="0 0.1 0" rotation="-90 0 0" width="1" height="0.75"></a-image>
+  </a-marker>
+
+  <a-marker type="pattern" url="pattern-hose.patt">
+    <a-image src="#image-2" position="0 0.1 0" rotation="-90 0 0" width="1" height="0.75"></a-image>
+  </a-marker>
+
+   <a-marker type="pattern" url="pattern-piano.patt">
+    <a-image src="#image-3" position="0 0.1 0" rotation="-90 0 0" width="1" height="0.75"></a-image>
+  </a-marker>
+
+  <a-entity camera></a-entity>
+  
+</a-scene>
+  </body>
+</html>
