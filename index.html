@@ -4,39 +4,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+      #example-scanning-overlay { display: flex; align-items: center; justify-content: center; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: transparent; z-index: 2; }
+      #start-button { padding: 20px; border-radius: 10px; background: #007bff; color: white; font-size: 20px; cursor: pointer; border: none; }
+    </style>
   </head>
-  <body style="margin: 0px; overflow: hidden;">
+  <body>
+    <div id="example-scanning-overlay">
+      <button id="start-button">START AR EXPERIENCE</button>
+    </div>
+
     <a-scene
-      mindar-image="imageTargetSrc: https://jagrnght.github.io/SYDEgallery/targets.mind; uiLoading: yes; uiScanning: yes;"
-      embedded
-      color-space="sRGB"
-      renderer="colorManagement: true, physicallyCorrectLights"
-      vr-mode-ui="enabled: false"
-      device-orientation-permission-ui="enabled: false">
-    
+      mindar-image="imageTargetSrc: ./targets.mind; autoStart: false; uiLoading: no; uiScanning: no;"
+      embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      
       <a-assets>
-        <img id="s1000" src="S1000.png" crossorigin="anonymous">
-        <img id="ventech" src="Ventech.png" crossorigin="anonymous">
-        <img id="sound" src="Sound.png" crossorigin="anonymous">
+        <img id="s1000" src="S1000.png">
+        <img id="ventech" src="Ventech.png">
+        <img id="sound" src="Sound.png">
       </a-assets>
 
-      <!-- targetIndex 0 = first image uploaded to compiler -->
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
       <a-entity mindar-image-target="targetIndex: 0">
         <a-image src="#s1000" position="0 0 0" width="1" height="0.75"></a-image>
       </a-entity>
-
-      <!-- targetIndex 1 = second image uploaded to compiler -->
       <a-entity mindar-image-target="targetIndex: 1">
         <a-image src="#ventech" position="0 0 0" width="1" height="0.75"></a-image>
       </a-entity>
-
-      <!-- targetIndex 2 = third image uploaded to compiler -->
       <a-entity mindar-image-target="targetIndex: 2">
         <a-image src="#sound" position="0 0 0" width="1" height="0.75"></a-image>
       </a-entity>
-
-      <a-entity camera></a-entity>
-
     </a-scene>
+
+    <script>
+      const startButton = document.querySelector("#start-button");
+      const sceneEl = document.querySelector("a-scene");
+      
+      startButton.addEventListener('click', () => {
+        // This triggers the camera and tracking worker simultaneously
+        sceneEl.systems['mindar-image-system'].start();
+        document.querySelector("#example-scanning-overlay").style.display = "none";
+      });
+    </script>
   </body>
 </html>
